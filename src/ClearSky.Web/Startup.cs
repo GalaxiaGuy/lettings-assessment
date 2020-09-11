@@ -1,4 +1,6 @@
+using ClearSky.Infrastructure.Data;
 using ClearSky.Infrastructure.Identity;
+using ClearSky.Infrastructure.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -21,13 +23,19 @@ namespace ClearSky.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<LettingsDbContext>(options =>
+                options.UseSqlite(
+                    Configuration.GetConnectionString("DefaultConnection"),
+                    x => x.MigrationsAssembly("ClearSky.Infrastructure")));
             services.AddDbContext<AppIdentityDbContext>(options =>
                 options.UseSqlite(
-                    Configuration.GetConnectionString("DefaultConnection")));
+                    Configuration.GetConnectionString("DefaultConnection"),
+                    x => x.MigrationsAssembly("ClearSky.Infrastructure")));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddEntityFrameworkStores<AppIdentityDbContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
+            services.AddTransient<LettingsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

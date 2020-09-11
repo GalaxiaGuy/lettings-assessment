@@ -33,10 +33,11 @@ namespace ClearSky.Infrastructure.Data
                 property.ImageUrl = $"http://lorempixel.com/400/400/city/{i}/";
 
                 // Pleasantly distributed price between 100,000 and 1,000,000
-                property.ListPrice = (((1223 * i) % 900) + 100) * 10000;
+                property.ListPrice = (((1223 * i) % 900) + 100) * 1000;
             }
 
             await context.AddRangeAsync(seedProperties).ConfigureAwait(false);
+            await context.SaveChangesAsync().ConfigureAwait(false);
         }
     }
 }
