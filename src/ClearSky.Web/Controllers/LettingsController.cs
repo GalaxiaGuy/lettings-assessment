@@ -39,11 +39,14 @@ namespace ClearSky.Web.Controllers
             try
             {
                 var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-                await _lettingsService.ToggleInterestAsync(propertyId, userId).ConfigureAwait(false);
+                var hasInterest = await _lettingsService.ToggleInterestAsync(propertyId, userId).ConfigureAwait(false);
+                TempData["Success"] = hasInterest
+                    ? "Your interest has been noted"
+                    : "Your interest has been removed";
             }
             catch
             {
-
+                TempData["Error"] = "There was a problem setting your interest.";
             }
             return RedirectToAction("Index", new { page = page });
         }
