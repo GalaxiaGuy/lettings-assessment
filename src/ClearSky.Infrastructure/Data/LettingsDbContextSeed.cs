@@ -11,8 +11,6 @@ namespace ClearSky.Infrastructure.Data
     {
         public static async Task CheckSeedAsync(LettingsDbContext context)
         {
-            context.RemoveRange(context.Properties);
-            await context.SaveChangesAsync().ConfigureAwait(false);
             var anyProperties = await context.Properties.AnyAsync().ConfigureAwait(false);
             if (!anyProperties)
             {

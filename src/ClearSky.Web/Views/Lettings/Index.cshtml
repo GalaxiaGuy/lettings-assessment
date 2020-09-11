@@ -1,39 +1,46 @@
-﻿@model PropertyCollectionViewModel
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+
+@model PropertyCollectionViewModel
 @{
     ViewData["Title"] = "Lettings";
 }
 
-    <div class="container">
-        @if (Model?.Properties != null && await Model.Properties.AnyAsync().ConfigureAwait(false))
-        {
-            <nav>
-                <ul class="pagination">
-                    <li class="page-item@(Model.HasPreviousPage ? "" : " disabled")"><a class="page-link" href="?page=@Model.PreviousPage">Previous</a></li>
-                    <li class="page-item@(Model.HasNextPage ? "" : " disabled")"><a class="page-link" href="?page=@Model.NextPage">Next</a></li>
-                </ul>
-            </nav>
-            <div class="row">
-                @await foreach (var item in Model.Properties)
-                {
-                    <div class="col-6">
-                        <div class="card property mb-3">
-                            <img src="@item.ImageUrl" />
-                            <div class="card-body">
-                                <h5 class="card-title">@item.Address</h5>
-                                <p class="card-text">@item.Description</p>
-                            </div>
-                            <div class="card-footer">
-                                <span class="price">@item.ListPrice</span>
-                            </div>
+<div class="container">
+    @if (Model?.Properties != null && await Model.Properties.AnyAsync().ConfigureAwait(false))
+    {
+        <nav>
+            <ul class="pagination">
+                <li class="page-item@(Model.HasPreviousPage ? "" : " disabled")"><a class="page-link" href="?page=@Model.PreviousPage">Previous</a></li>
+                <li class="page-item@(Model.HasNextPage ? "" : " disabled")"><a class="page-link" href="?page=@Model.NextPage">Next</a></li>
+            </ul>
+        </nav>
+        <div class="row">
+            @await foreach (var item in Model.Properties)
+            {
+                <div class="col-6">
+                    <div class="card property mb-3">
+                        <img src="@item.ImageUrl" />
+                        <div class="card-body">
+                            <h5 class="card-title">@item.Address</h5>
+                            <p class="card-text">@item.Description</p>
+                        </div>
+                        <div class="card-footer">
+                            <span class="price">@item.ListPrice</span>
+                            @if (SignInManager.IsSignedIn(User))
+                            {
+                                <a href="#" class="btn btn-primary float-right">Note interest</a>
+                            }
                         </div>
                     </div>
-                }
-            </div>
-            <nav>
-                <ul class="pagination">
-                    <li class="page-item@(Model.HasPreviousPage ? "" : " disabled")"><a class="page-link" href="?page=@Model.PreviousPage">Previous</a></li>
-                    <li class="page-item@(Model.HasNextPage ? "" : " disabled")"><a class="page-link" href="?page=@Model.NextPage">Next</a></li>
-                </ul>
-            </nav>
-        }
-    </div>
+                </div>
+            }
+        </div>
+        <nav>
+            <ul class="pagination">
+                <li class="page-item@(Model.HasPreviousPage ? "" : " disabled")"><a class="page-link" href="?page=@Model.PreviousPage">Previous</a></li>
+                <li class="page-item@(Model.HasNextPage ? "" : " disabled")"><a class="page-link" href="?page=@Model.NextPage">Next</a></li>
+            </ul>
+        </nav>
+    }
+</div>
