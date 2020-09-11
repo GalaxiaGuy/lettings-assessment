@@ -48,7 +48,7 @@ namespace ClearSky.Web.Controllers
             {
                 TempData["Error"] = "There was a problem setting your interest.";
             }
-            return RedirectToAction("Index", new { page = page });
+            return new RedirectResult(Url.Action("Index") + $"#{propertyId}");
         }
     }
 }
