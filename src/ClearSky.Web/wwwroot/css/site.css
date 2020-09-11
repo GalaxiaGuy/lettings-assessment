@@ -72,12 +72,6 @@ body {
 
 .property img {
     object-fit: cover;
-    height: 300px;
-}
-
-.property .card-body {
-    overflow-y: scroll;
-    height: 300px;
 }
 
 .property .price {

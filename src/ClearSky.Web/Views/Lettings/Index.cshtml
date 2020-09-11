@@ -15,11 +15,11 @@
                 <li class="page-item@(Model.HasNextPage ? "" : " disabled")"><a class="page-link" href="?page=@Model.NextPage">Next</a></li>
             </ul>
         </nav>
-        <div class="row">
+        <div class="row row-cols-1 row-cols-md-3">
             @await foreach (var item in Model.Properties)
             {
-                <div class="col-6">
-                    <div class="card property mb-3">
+                <div class="col mb-4">
+                    <div class="card h-100 property">
                         <img src="@item.ImageUrl" />
                         <div class="card-body">
                             <h5 class="card-title">@item.Address</h5>
