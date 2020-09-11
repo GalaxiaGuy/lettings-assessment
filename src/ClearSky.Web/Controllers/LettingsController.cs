@@ -33,5 +33,19 @@ namespace ClearSky.Web.Controllers
             var viewModel = new PropertyCollectionViewModel(propertyViewModels, page, pageCount);
             return View(viewModel);
         }
+
+        public async Task<IActionResult> ToggleInterest(string propertyId, int page=1)
+        {
+            try
+            {
+                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                await _lettingsService.ToggleInterestAsync(propertyId, userId).ConfigureAwait(false);
+            }
+            catch
+            {
+
+            }
+            return RedirectToAction("Index", new { page = page });
+        }
     }
 }

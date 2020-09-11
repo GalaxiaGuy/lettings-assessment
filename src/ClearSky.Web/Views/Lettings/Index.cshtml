@@ -29,9 +29,16 @@
                             <span class="price">@item.ListPrice</span>
                             @if (SignInManager.IsSignedIn(User))
                             {
-                                <a href="#" class="btn btn-primary float-right">Note interest</a>
+                                if (item.HasInterest)
+                                {
+                                    <a asp-controller="Lettings" asp-action="ToggleInterest" asp-route-propertyId="@item.Id" asp-route-page="@Model.CurrentPage" class="btn btn-warning float-right">Remove interest</a>
+                                }
+                                else
+                                {
+                                    <a asp-controller="Lettings" asp-action="ToggleInterest" asp-route-propertyId="@item.Id" asp-route-page="@Model.CurrentPage" class="btn btn-primary float-right">Note interest</a>
+                                }
                             }
-                        </div>
+                            </div>
                     </div>
                 </div>
             }
