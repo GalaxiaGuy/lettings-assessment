@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using ClearSky.Infrastructure.Services;
 using ClearSky.Web.Models;
@@ -20,9 +21,14 @@ namespace ClearSky.Web.Controllers
 
         public async Task<IActionResult> Index(int page = 1)
         {
-            var properties = _lettingsService.FetchPropertiesAsync(page);
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var properties = userId == null
+                ? _lettingsService.FetchPropertiesAsync(page)
+                : _lettingsService.FetchPropertiesWithInterestsAsync(page);
+
+            _lettingsService.FetchPropertiesAsync(page);
             var pageCount = await _lettingsService.PageCountAsync().ConfigureAwait(false);
-            var propertyViewModels = properties.Select(x => new PropertyViewModel(x));
+            var propertyViewModels = properties.Select(x => new PropertyViewModel(x, userId));
 
             var viewModel = new PropertyCollectionViewModel(propertyViewModels, page, pageCount);
             return View(viewModel);

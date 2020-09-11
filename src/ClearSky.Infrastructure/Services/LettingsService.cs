@@ -19,8 +19,11 @@ namespace ClearSky.Infrastructure.Services
 
         private Task InitAsync() => LettingsDbContextSeed.CheckSeedAsync(_lettingsDbContext);
 
-        public IAsyncEnumerable<Property> FetchPropertiesAsync(int page = 1)
+        public IAsyncEnumerable<Property> FetchPropertiesAsync(int page)
             => _lettingsDbContext.Properties.Skip((page-1) * PAGE_SIZE).Take(PAGE_SIZE).AsAsyncEnumerable();
+
+        public IAsyncEnumerable<Property> FetchPropertiesWithInterestsAsync(int page)
+            => _lettingsDbContext.Properties.Include(x => x.Interests).Skip((page - 1) * PAGE_SIZE).Take(PAGE_SIZE).AsAsyncEnumerable();
 
         public async Task<int> PageCountAsync()
             => (await _lettingsDbContext.Properties.CountAsync()) / PAGE_SIZE + 1;
