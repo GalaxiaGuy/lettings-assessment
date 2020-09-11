@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClearSky.Web", "ClearSky.Web\ClearSky.Web.csproj", "{179AB8E5-F9DF-4713-92C6-19FA3C1F3993}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClearSky.Infrastructure", "ClearSky.Infrastructure\ClearSky.Infrastructure.csproj", "{02CC3CC9-B1A9-4271-A9B7-D9E1B26420F7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,5 +15,9 @@ Global
 		{179AB8E5-F9DF-4713-92C6-19FA3C1F3993}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{179AB8E5-F9DF-4713-92C6-19FA3C1F3993}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{179AB8E5-F9DF-4713-92C6-19FA3C1F3993}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02CC3CC9-B1A9-4271-A9B7-D9E1B26420F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02CC3CC9-B1A9-4271-A9B7-D9E1B26420F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02CC3CC9-B1A9-4271-A9B7-D9E1B26420F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02CC3CC9-B1A9-4271-A9B7-D9E1B26420F7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

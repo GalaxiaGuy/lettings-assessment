@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace ClearSky.Web.Data.Migrations
+namespace ClearSky.Infrastructure.Identity.Migrations
 {
     public partial class CreateIdentitySchema : Migration
     {
