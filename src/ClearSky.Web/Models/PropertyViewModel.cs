@@ -13,10 +13,10 @@ namespace ClearSky.Web.Models
             Description = property.Description;
         }
 
-        public string Id { get; set; }
-        public string Address { get; set; }
-        public string ImageUrl { get; set; }
-        public string ListPrice { get; set; }
-        public string Description { get; set; }
+        public string Id { get; }
+        public string Address { get; }
+        public string ImageUrl { get; }
+        public string ListPrice { get; }
+        public string Description { get; }
     }
 }

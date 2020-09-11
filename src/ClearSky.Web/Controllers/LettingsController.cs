@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Threading.Tasks;
 using ClearSky.Infrastructure.Services;
 using ClearSky.Web.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -17,11 +18,14 @@ namespace ClearSky.Web.Controllers
             _lettingsService = lettingsService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index(int page = 1)
         {
-            var properties = _lettingsService.FetchPropertiesAsync();
-            var viewModels = properties.Select(x => new PropertyViewModel(x));
-            return View(viewModels);
+            var properties = _lettingsService.FetchPropertiesAsync(page);
+            var pageCount = await _lettingsService.PageCountAsync().ConfigureAwait(false);
+            var propertyViewModels = properties.Select(x => new PropertyViewModel(x));
+
+            var viewModel = new PropertyCollectionViewModel(propertyViewModels, page, pageCount);
+            return View(viewModel);
         }
     }
 }
