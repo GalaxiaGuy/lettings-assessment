@@ -1,0 +1,14 @@
+﻿@model IAsyncEnumerable<PropertyViewModel>
+@{
+    ViewData["Title"] = "Properties";
+}
+
+@if (Model != null && await Model.AnyAsync().ConfigureAwait(false))
+{
+    @await foreach (var item in Model)
+    {
+        <article class="row">
+            <h1>@item.Address</h1>
+        </article>
+    }
+}

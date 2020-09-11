@@ -1,4 +1,4 @@
-﻿using System.Diagnostics;
+﻿using System.Linq;
 using ClearSky.Infrastructure.Services;
 using ClearSky.Web.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -17,15 +17,11 @@ namespace ClearSky.Web.Controllers
             _lettingsService = lettingsService;
         }
 
-        public IActionResult Test()
+        public IActionResult Index()
         {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            var properties = _lettingsService.FetchPropertiesAsync();
+            var viewModels = properties.Select(x => new PropertyViewModel(x));
+            return View(viewModels);
         }
     }
 }
