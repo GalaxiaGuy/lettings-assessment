@@ -11,6 +11,8 @@ namespace ClearSky.Infrastructure.Data
     {
         public static async Task CheckSeedAsync(LettingsDbContext context)
         {
+            context.RemoveRange(context.Properties);
+            await context.SaveChangesAsync().ConfigureAwait(false);
             var anyProperties = await context.Properties.AnyAsync().ConfigureAwait(false);
             if (!anyProperties)
             {
@@ -30,7 +32,8 @@ namespace ClearSky.Infrastructure.Data
             for (int i = 0; i < seedProperties.Count; i++)
             {
                 var property = seedProperties[i];
-                property.ImageUrl = $"http://lorempixel.com/400/400/city/{i}/";
+                var imageIndex = i % 9;
+                property.ImageUrl = $"http://lorempixel.com/400/400/city/{imageIndex}/";
 
                 // Pleasantly distributed price between 100,000 and 1,000,000
                 property.ListPrice = (((1223 * i) % 900) + 100) * 1000;

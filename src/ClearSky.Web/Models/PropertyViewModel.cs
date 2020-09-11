@@ -9,14 +9,14 @@ namespace ClearSky.Web.Models
             Id = property.Id;
             Address = property.Address;
             ImageUrl = property.ImageUrl;
-            ListPrice = property.ListPrice;
+            ListPrice = property.ListPrice.ToString("C");
             Description = property.Description;
         }
 
         public string Id { get; set; }
         public string Address { get; set; }
         public string ImageUrl { get; set; }
-        public decimal ListPrice { get; set; }
+        public string ListPrice { get; set; }
         public string Description { get; set; }
     }
 }

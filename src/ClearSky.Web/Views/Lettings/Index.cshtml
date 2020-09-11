@@ -3,12 +3,25 @@
     ViewData["Title"] = "Properties";
 }
 
-@if (Model != null && await Model.AnyAsync().ConfigureAwait(false))
-{
-    @await foreach (var item in Model)
-    {
-        <article class="row">
-            <h1>@item.Address</h1>
-        </article>
-    }
-}
+    <div class="container">
+        @if (Model != null && await Model.AnyAsync().ConfigureAwait(false))
+        {
+        <div class="row">
+            @await foreach (var item in Model)
+            {
+                <div class="col-6">
+                    <div class="card property mb-3">
+                        <img src="@item.ImageUrl" />
+                        <div class="card-body">
+                            <h5 class="card-title">@item.Address</h5>
+                            <p class="card-text">@item.Description</p>
+                        </div>
+                        <div class="card-footer">
+                            <span class="price">@item.ListPrice</span>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        }
+</div>
