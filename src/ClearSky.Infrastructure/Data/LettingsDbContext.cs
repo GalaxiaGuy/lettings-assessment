@@ -10,6 +10,11 @@ namespace ClearSky.Infrastructure.Data
         {
         }
 
+        protected LettingsDbContext()
+        {
+
+        }
+
         public DbSet<Property> Properties { get; set; }
     }
 }

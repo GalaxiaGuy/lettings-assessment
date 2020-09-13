@@ -5,6 +5,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClearSky.Web", "src\ClearSk
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClearSky.Infrastructure", "src\ClearSky.Infrastructure\ClearSky.Infrastructure.csproj", "{02CC3CC9-B1A9-4271-A9B7-D9E1B26420F7}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{566326BF-8EF0-415E-AFF1-5AD280090B0B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{E760DC9A-FB89-4FA3-B34B-3C8F40345FB9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClearSky.Infrastructure.Tests", "tests\ClearSky.Infrastructure.Tests\ClearSky.Infrastructure.Tests.csproj", "{EF087D00-2B0A-47B6-A710-628FD6CBB5D5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,5 +25,14 @@ Global
 		{02CC3CC9-B1A9-4271-A9B7-D9E1B26420F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{02CC3CC9-B1A9-4271-A9B7-D9E1B26420F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{02CC3CC9-B1A9-4271-A9B7-D9E1B26420F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF087D00-2B0A-47B6-A710-628FD6CBB5D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF087D00-2B0A-47B6-A710-628FD6CBB5D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF087D00-2B0A-47B6-A710-628FD6CBB5D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF087D00-2B0A-47B6-A710-628FD6CBB5D5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{02CC3CC9-B1A9-4271-A9B7-D9E1B26420F7} = {566326BF-8EF0-415E-AFF1-5AD280090B0B}
+		{179AB8E5-F9DF-4713-92C6-19FA3C1F3993} = {566326BF-8EF0-415E-AFF1-5AD280090B0B}
+		{EF087D00-2B0A-47B6-A710-628FD6CBB5D5} = {E760DC9A-FB89-4FA3-B34B-3C8F40345FB9}
 	EndGlobalSection
 EndGlobal

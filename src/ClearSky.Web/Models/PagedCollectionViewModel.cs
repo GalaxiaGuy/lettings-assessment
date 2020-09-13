@@ -12,7 +12,7 @@
                 PreviousPage = CurrentPage - 1;
                 HasPreviousPage = true;
             }
-            if (CurrentPage < PageCount - 1)
+            if (CurrentPage < PageCount)
             {
                 NextPage = CurrentPage + 1;
                 HasNextPage = true;
