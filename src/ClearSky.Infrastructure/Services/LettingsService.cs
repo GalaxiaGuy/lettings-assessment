@@ -9,18 +9,19 @@ namespace ClearSky.Infrastructure.Services
     public class LettingsService
     {
         private LettingsDbContext _lettingsDbContext;
-        private const int PAGE_SIZE = 10;
+        public const int PAGE_SIZE = 10;
 
         public LettingsService(LettingsDbContext lettingsDbContext)
         {
             _lettingsDbContext = lettingsDbContext;
+            LettingsDbContextSeed.CheckSeedAsync(_lettingsDbContext).GetAwaiter().GetResult();
         }
 
         public IAsyncEnumerable<Property> FetchPropertiesAsync(int page)
-            => _lettingsDbContext.Properties.Skip((page-1) * PAGE_SIZE).Take(PAGE_SIZE).AsAsyncEnumerable();
+            => _lettingsDbContext.Properties.OrderBy(x => x.Id).Skip((page-1) * PAGE_SIZE).Take(PAGE_SIZE).AsAsyncEnumerable();
 
         public IAsyncEnumerable<Property> FetchPropertiesWithInterestsAsync(int page)
-            => _lettingsDbContext.Properties.Include(x => x.Interests).Skip((page - 1) * PAGE_SIZE).Take(PAGE_SIZE).AsAsyncEnumerable();
+            => _lettingsDbContext.Properties.OrderBy(x => x.Id).Include(x => x.Interests).Skip((page - 1) * PAGE_SIZE).Take(PAGE_SIZE).AsAsyncEnumerable();
 
         public async Task<bool> ToggleInterestAsync(string propertyId, string userId)
         {
