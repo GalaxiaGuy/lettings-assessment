@@ -14,7 +14,6 @@ namespace ClearSky.Infrastructure.Services
         public LettingsService(LettingsDbContext lettingsDbContext)
         {
             _lettingsDbContext = lettingsDbContext;
-            LettingsDbContextSeed.CheckSeedAsync(_lettingsDbContext).GetAwaiter().GetResult();
         }
 
         public IAsyncEnumerable<Property> FetchPropertiesAsync(int page)

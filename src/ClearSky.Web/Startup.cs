@@ -24,11 +24,11 @@ namespace ClearSky.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<LettingsDbContext>(options =>
-                options.UseSqlite(
+                options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection"),
                     x => x.MigrationsAssembly("ClearSky.Infrastructure")));
             services.AddDbContext<AppIdentityDbContext>(options =>
-                options.UseSqlite(
+                options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection"),
                     x => x.MigrationsAssembly("ClearSky.Infrastructure")));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)

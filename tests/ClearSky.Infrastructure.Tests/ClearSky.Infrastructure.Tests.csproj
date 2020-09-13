@@ -18,6 +18,8 @@
     <Folder Include="Services\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\ClearSky.Infrastructure\ClearSky.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\src\ClearSky.Infrastructure\ClearSky.Infrastructure.csproj">
+      <ReferenceSourceTarget>ProjectReference</ReferenceSourceTarget>
+    </ProjectReference>
   </ItemGroup>
 </Project>

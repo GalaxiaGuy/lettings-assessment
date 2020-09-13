@@ -2,16 +2,31 @@
 
 namespace ClearSky.Infrastructure.Data.Migrations
 {
-    public partial class AddPropertyInterest : Migration
+    public partial class Create : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Properties",
+                columns: table => new
+                {
+                    Id = table.Column<string>(nullable: false),
+                    Address = table.Column<string>(nullable: true),
+                    ImageUrl = table.Column<string>(nullable: true),
+                    ListPrice = table.Column<decimal>(nullable: false),
+                    Description = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Properties", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "PropertyInterest",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     PropertyId = table.Column<string>(nullable: true),
                     CustomerIdentityId = table.Column<string>(nullable: true)
                 },
@@ -36,6 +51,9 @@ namespace ClearSky.Infrastructure.Data.Migrations
         {
             migrationBuilder.DropTable(
                 name: "PropertyInterest");
+
+            migrationBuilder.DropTable(
+                name: "Properties");
         }
     }
 }
