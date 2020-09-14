@@ -33,8 +33,8 @@ namespace ClearSky.Infrastructure.Data
                 var imageIndex = i % 9;
                 property.ImageUrl = $"http://lorempixel.com/400/400/city/{imageIndex}/";
 
-                // Pleasantly distributed price between 100,000 and 1,000,000
-                property.ListPrice = (((1223 * i) % 900) + 100) * 1000;
+                // Pleasantly distributed price between 300 and 3,000
+                property.ListPrice = 3 * (((1223 * i) % 900) + 100);
             }
 
             await context.AddRangeAsync(seedProperties).ConfigureAwait(false);
