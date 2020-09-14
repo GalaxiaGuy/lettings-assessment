@@ -7,8 +7,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ClearSky.Infrastructure.Data.Migrations
 {
-    [DbContext(typeof(LettingsDbContext))]
-    partial class LettingsDbContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(PropertyDbContext))]
+    partial class PropertyDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {

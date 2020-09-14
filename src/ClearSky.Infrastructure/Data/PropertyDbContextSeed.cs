@@ -7,9 +7,9 @@ using Newtonsoft.Json;
 
 namespace ClearSky.Infrastructure.Data
 {
-    public static class LettingsDbContextSeed
+    public static class PropertyDbContextSeed
     {
-        public static async Task CheckSeedAsync(LettingsDbContext context)
+        public static async Task CheckSeedAsync(PropertyDbContext context)
         {
             var anyProperties = await context.Properties.AnyAsync().ConfigureAwait(false);
             if (!anyProperties)
@@ -18,9 +18,9 @@ namespace ClearSky.Infrastructure.Data
             }
         }
 
-        public static async Task SeedAsync(LettingsDbContext context)
+        public static async Task SeedAsync(PropertyDbContext context)
         {
-            var assembly = Assembly.GetAssembly(typeof(LettingsDbContextSeed));
+            var assembly = Assembly.GetAssembly(typeof(PropertyDbContextSeed));
             using var stream = assembly.GetManifestResourceStream("ClearSky.Infrastructure.Data.seed.json");
             using var reader = new StreamReader(stream);
             var json = await reader.ReadToEndAsync().ConfigureAwait(false);

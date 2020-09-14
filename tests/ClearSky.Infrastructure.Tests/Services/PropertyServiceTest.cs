@@ -1,26 +1,25 @@
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using ClearSky.Infrastructure.Services;
-using Xunit;
-using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using Xunit;
 
 namespace ClearSky.Infrastructure.Tests.Services
 {
-
-    public class LettingsServiceTest : LettingsDbContextBaseTest
+    public class PropertyServiceTest : PropertyDbContextBaseTest
     {
-        private readonly LettingsService _service;
+        private readonly PropertyService _service;
 
-        public LettingsServiceTest() : base()
+        public PropertyServiceTest() : base()
         {
-            _service = new LettingsService(Context);
+            _service = new PropertyService(Context);
         }
 
         [Fact]
         public async Task FetchPropertiesFirstPageFetchesFirstProperties()
         {
-            var firstProperties = await Context.Properties.AsQueryable().OrderBy(x => x.Id).Take(LettingsService.PAGE_SIZE).ToListAsync().ConfigureAwait(false);
+            var firstProperties = await Context.Properties.AsQueryable().OrderBy(x => x.Id).Take(PropertyService.PAGE_SIZE).ToListAsync().ConfigureAwait(false);
             var firstPage = await _service.FetchPropertiesAsync(1).ToListAsync();
 
             Assert.True(firstProperties.SequenceEqual(firstPage));
@@ -29,7 +28,7 @@ namespace ClearSky.Infrastructure.Tests.Services
         [Fact]
         public async Task FetchPropertiesWithInterestsFirstPageFetchesFirstProperties()
         {
-            var firstProperties = await Context.Properties.AsQueryable().OrderBy(x => x.Id).Take(LettingsService.PAGE_SIZE).ToListAsync().ConfigureAwait(false);
+            var firstProperties = await Context.Properties.AsQueryable().OrderBy(x => x.Id).Take(PropertyService.PAGE_SIZE).ToListAsync().ConfigureAwait(false);
             var firstPage = await _service.FetchPropertiesWithInterestsAsync(1).ToListAsync().ConfigureAwait(false);
 
             Assert.True(firstProperties.SequenceEqual(firstPage));
@@ -64,7 +63,7 @@ namespace ClearSky.Infrastructure.Tests.Services
         public async Task PageCountIsCorrect()
         {
             var pageCount = await _service.PageCountAsync().ConfigureAwait(false);
-            var expectedPageCount = 100 / LettingsService.PAGE_SIZE;
+            var expectedPageCount = 100 / PropertyService.PAGE_SIZE;
 
             Assert.Equal(expectedPageCount, pageCount);
         }

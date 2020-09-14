@@ -8,26 +8,26 @@ using Microsoft.Extensions.Logging;
 
 namespace ClearSky.Web.Controllers
 {
-    public class LettingsController : Controller
+    public class PropertyController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly LettingsService _lettingsService;
+        private readonly PropertyService _propertyService;
 
-        public LettingsController(ILogger<HomeController> logger, LettingsService lettingsService)
+        public PropertyController(ILogger<HomeController> logger, PropertyService propertyService)
         {
             _logger = logger;
-            _lettingsService = lettingsService;
+            _propertyService = propertyService;
         }
 
         public async Task<IActionResult> Index(int page = 1)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var properties = userId == null
-                ? _lettingsService.FetchPropertiesAsync(page)
-                : _lettingsService.FetchPropertiesWithInterestsAsync(page);
+                ? _propertyService.FetchPropertiesAsync(page)
+                : _propertyService.FetchPropertiesWithInterestsAsync(page);
 
-            _lettingsService.FetchPropertiesAsync(page);
-            var pageCount = await _lettingsService.PageCountAsync().ConfigureAwait(false);
+            _propertyService.FetchPropertiesAsync(page);
+            var pageCount = await _propertyService.PageCountAsync().ConfigureAwait(false);
             var propertyViewModels = properties.Select(x => new PropertyViewModel(x, userId));
 
             var viewModel = new PropertyCollectionViewModel(propertyViewModels, page, pageCount);
@@ -39,7 +39,7 @@ namespace ClearSky.Web.Controllers
             try
             {
                 var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-                var hasInterest = await _lettingsService.ToggleInterestAsync(propertyId, userId).ConfigureAwait(false);
+                var hasInterest = await _propertyService.ToggleInterestAsync(propertyId, userId).ConfigureAwait(false);
                 TempData["Success"] = hasInterest
                     ? "Your interest has been noted"
                     : "Your interest has been removed";

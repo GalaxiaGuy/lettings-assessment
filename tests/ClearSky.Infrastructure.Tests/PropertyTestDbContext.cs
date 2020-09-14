@@ -5,9 +5,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ClearSky.Infrastructure.Tests
 {
-    public class LettingsTestDbContext : LettingsDbContext
+    public class PropertyTestDbContext : PropertyDbContext
     {
-        public LettingsTestDbContext() : base()
+        public PropertyTestDbContext() : base()
         {
 
         }

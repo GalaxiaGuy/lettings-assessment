@@ -3,7 +3,7 @@
 
 @model PropertyCollectionViewModel
 @{
-    ViewData["Title"] = "Lettings";
+    ViewData["Title"] = "Properties";
 }
 
 <div class="container">
@@ -32,11 +32,11 @@
                             {
                                 if (item.HasInterest)
                                 {
-                                    <a asp-controller="Lettings" asp-action="ToggleInterest" asp-route-propertyId="@item.Id" asp-route-page="@Model.CurrentPage" class="btn btn-warning float-right">Remove interest</a>
+                                    <a asp-controller="Property" asp-action="ToggleInterest" asp-route-propertyId="@item.Id" asp-route-page="@Model.CurrentPage" class="btn btn-warning float-right">Remove interest</a>
                                 }
                                 else
                                 {
-                                    <a asp-controller="Lettings" asp-action="ToggleInterest" asp-route-propertyId="@item.Id" asp-route-page="@Model.CurrentPage" class="btn btn-primary float-right">Note interest</a>
+                                    <a asp-controller="Property" asp-action="ToggleInterest" asp-route-propertyId="@item.Id" asp-route-page="@Model.CurrentPage" class="btn btn-primary float-right">Note interest</a>
                                 }
                             }
                         </div>

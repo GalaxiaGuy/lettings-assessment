@@ -23,7 +23,7 @@ namespace ClearSky.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<LettingsDbContext>(options =>
+            services.AddDbContext<PropertyDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection"),
                     x => x.MigrationsAssembly("ClearSky.Infrastructure")));
@@ -35,7 +35,7 @@ namespace ClearSky.Web
                 .AddEntityFrameworkStores<AppIdentityDbContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
-            services.AddTransient<LettingsService>();
+            services.AddTransient<PropertyService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

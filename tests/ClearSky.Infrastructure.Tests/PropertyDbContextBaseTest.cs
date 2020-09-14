@@ -5,22 +5,22 @@ using Microsoft.EntityFrameworkCore;
 namespace ClearSky.Infrastructure.Tests
 {
 
-    public abstract class LettingsDbContextBaseTest
+    public abstract class PropertyDbContextBaseTest
     {
-        protected LettingsDbContext Context { get; }
+        protected PropertyDbContext Context { get; }
 
-        public LettingsDbContextBaseTest()
+        public PropertyDbContextBaseTest()
         {
-            Context = new LettingsTestDbContext();
-            new DbContextOptionsBuilder<LettingsDbContext>();
+            Context = new PropertyTestDbContext();
+            new DbContextOptionsBuilder<PropertyDbContext>();
             InitDbAsync(Context).GetAwaiter().GetResult();
         }
 
-        private async Task InitDbAsync(LettingsDbContext context)
+        private async Task InitDbAsync(PropertyDbContext context)
         {
             await context.Database.EnsureCreatedAsync().ConfigureAwait(false);
             await context.Database.MigrateAsync().ConfigureAwait(false);
-            await LettingsDbContextSeed.CheckSeedAsync(context).ConfigureAwait(false);
+            await PropertyDbContextSeed.CheckSeedAsync(context).ConfigureAwait(false);
         }
     }
 }

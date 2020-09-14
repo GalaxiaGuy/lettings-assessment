@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ClearSky.Infrastructure.Data.Migrations
 {
-    [DbContext(typeof(LettingsDbContext))]
+    [DbContext(typeof(PropertyDbContext))]
     [Migration("20200913185158_Create")]
     partial class Create
     {
