@@ -18,7 +18,6 @@ namespace ClearSky.Infrastructure.Tests
 
         private async Task InitDbAsync(PropertyDbContext context)
         {
-            await context.Database.EnsureCreatedAsync().ConfigureAwait(false);
             await context.Database.MigrateAsync().ConfigureAwait(false);
             await PropertyDbContextSeed.CheckSeedAsync(context).ConfigureAwait(false);
         }

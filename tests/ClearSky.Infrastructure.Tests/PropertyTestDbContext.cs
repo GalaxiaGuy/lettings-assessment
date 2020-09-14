@@ -15,7 +15,7 @@ namespace ClearSky.Infrastructure.Tests
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            optionsBuilder.UseSqlite(CreateInMemoryDatabase(), x => x.MigrationsAssembly("ClearSky.Infrastructure"));
+            optionsBuilder.UseSqlite(CreateInMemoryDatabase());
         }
 
         private static DbConnection CreateInMemoryDatabase()
