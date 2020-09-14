@@ -22,6 +22,8 @@ There is no customer entity, interest is just recording against the ID of the Id
 
 This is my first time using `IAsyncEnumerable`. It was fine.
 
+I didn't make any attempt to correctly set the culture. Running locally it seems to be using the invariant culture and on the deployed version en-US.
+
 ## Issues
 
 Noting interest is a `GET` request, it should be a `POST`. If it status just a boolean toggle, it should probably be an AJAX request.
